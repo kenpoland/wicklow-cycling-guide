@@ -1,22 +1,30 @@
-const CACHE_NAME = "wicklow-guide-cache-v1";
+const CACHE_NAME = "wicklow-cache-v1";
+
 const urlsToCache = [
-  "/",
-  "/index.html",
-  "/journal.html",
-  "/checklist.html",
-  "/lore.html",
-  "/style.css",
-  "/manifest.json"
+  "./index.html",
+  "./journal.html",
+  "./checklist.html",
+  "./lore.html",
+  "./style.css",
+  "./manifest.json",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
+  "./favicon.ico",
+  "./apple-touch-icon.png"
 ];
 
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(urlsToCache);
+    })
   );
 });
 
 self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request).then(response => response || fetch(event.request))
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
   );
 });
