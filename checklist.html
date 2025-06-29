@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Photo Checklist – Legends in the Spokes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#7F3FBF" />
+</head>
+<body>
+  <header>
+    <h1>📸 Photo Checklist</h1>
+    <p>Moments worth capturing on your Wicklow ride</p>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="index.html">🏞 Route</a> |
+    <a href="journal.html">✍️ Journal</a> |
+    <a href="checklist.html">📸 Checklist</a> |
+    <a href="lore.html">🌌 Fairy Lore</a>
+  </nav>
+
+  <section>
+    <h2>Your Snapshot Quest</h2>
+
+    <div class="site">
+      <ul style="list-style-type: none; padding-left: 0;">
+        <li>☐ Bray Head view from the beachside promenade</li>
+        <li>☐ The ornate gardens or front façade of Killruddery House</li>
+        <li>☐ Powerscourt Waterfall framed by forest (bonus: long exposure!)</li>
+        <li>☐ Enniskerry’s village square with your bike in the frame</li>
+        <li>☐ Sheep near Sally Gap (they’re natural models!) 🐑</li>
+        <li>☐ Wide-angle shot of Lough Tay – "The Guinness Lake" 🍺</li>
+        <li>☐ Castle Kevin ruins under ivy and shadow</li>
+        <li>☐ Round Tower in Glendalough at golden hour or misty dawn</li>
+        <li>☐ A fairy light or mystery shadow in the woods 🌌</li>
+        <li>☐ Your bike beside a mossy wall, gate, or waterfall</li>
+        <li>☐ Your ride crew mid-climb or mid-laugh 🚴‍♂️🚴‍♀️</li>
+        <li>☐ A trail sign or marker you didn’t expect</li>
+        <li>☐ That one photo that captures what the ride meant to you ❤️</li>
+      </ul>
+      <p><em>Tip:</em> Mark photos with 📷 after you’ve taken them—or draw them later in your journal if your camera missed the moment.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Bray Wheelers • 💜💛💙🤍 • #RideWithTheWheelers | #SpokesAndStories</p>
+  </footer>
+
+  <!-- PWA Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+</body>
+</html>

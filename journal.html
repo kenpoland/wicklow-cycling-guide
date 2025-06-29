@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ride Journal – Legends in the Spokes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#7F3FBF" />
+</head>
+<body>
+  <header>
+    <h1>✍️ Ride Reflection Journal</h1>
+    <p>A space to sketch, write, and remember every magical moment</p>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="index.html">🏞 Route</a> |
+    <a href="journal.html">✍️ Journal</a> |
+    <a href="checklist.html">📸 Checklist</a> |
+    <a href="lore.html">🌌 Fairy Lore</a>
+  </nav>
+
+  <section>
+    <h2>Reflect On Your Journey</h2>
+
+    <div class="site">
+      <p><strong>🌄 The view that took my breath away:</strong></p>
+      <div style="height:60px; background:#fff; border:2px dashed #ccc;"></div>
+    </div>
+
+    <div class="site">
+      <p><strong>🎧 A sound I’ll always remember:</strong></p>
+      <div style="height:60px; background:#fff; border:2px dashed #ccc;"></div>
+    </div>
+
+    <div class="site">
+      <p><strong>🐑 The most surprising encounter:</strong></p>
+      <div style="height:60px; background:#fff; border:2px dashed #ccc;"></div>
+    </div>
+
+    <div class="site">
+      <p><strong>📝 How it felt to ride through Wicklow's stories:</strong></p>
+      <div style="height:120px; background:#fff; border:2px dashed #ccc;"></div>
+    </div>
+
+    <div class="site">
+      <p><strong>🎨 Sketch a moment that meant something to you:</strong></p>
+      <div style="height:250px; background:#fff; border:3px dashed #bbb; margin-bottom:1rem;"></div>
+      <p><em>Tip: Use the fairy tale setting as your frame — maybe a stone tower, ancient tree, or that mysterious mist over the glen 🌫️</em></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Bray Wheelers • 💜💛💙🤍 • #RideWithTheWheelers | #SpokesAndStories</p>
+  </footer>
+
+  <!-- PWA Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+</body>
+</html>
