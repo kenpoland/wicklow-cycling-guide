@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GPX Route Map – Legends in the Spokes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#7F3FBF" />
+
+  <!-- Leaflet & GPX Map Support -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-gpx"></script>
+</head>
+<body>
+  <header>
+    <h1>🗺️ GPX Route Viewer</h1>
+    <p>Explore your Wicklow ride, waypoint by waypoint</p>
+  </header>
+
+  <nav>
+    <a href="index.html">🏞 Route</a> |
+    <a href="journal.html">✍️ Journal</a> |
+    <a href="checklist.html">📸 Checklist</a> |
+    <a href="lore.html">🌌 Fairy Lore</a> |
+    <a href="routes-gpx.html">🗺️ GPX Map</a>
+  </nav>
+
+  <section>
+    <h2>📍 Bray Loop Ride</h2>
+    <div id="map" style="height: 500px; border-radius: 8px; box-shadow: 0 0 8px #ccc;"></div>
+  </section>
+
+  <footer>
+    <p>Bray Wheelers • 💜💛💙🤍 • #SpokesAndStories</p>
+  </footer>
+
+  <!-- Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+
+  <!-- GPX Map Script -->
+  <script>
+    const map = L.map('map').setView([53.2, -6.1], 11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    new L.GPX("routes/bray-loop.gpx", {
+      async: true,
+      marker_options: {
+        startIconUrl: null,
+        endIconUrl: null,
+        shadowUrl: null
+      }
+    }).on('loaded', function(e) {
+      map.fitBounds(e.target.getBounds());
+    }).addTo(map);
+  </script>
+</body>
+</html>
