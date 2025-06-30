@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Routes – Legends in the Spokes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#7F3FBF" />
+
+  <!-- Leaflet & GPX Support -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-gpx"></script>
+
+  <style>
+    /* Tab Styles */
+    .tab-buttons {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .tab-buttons button {
+      margin: 0 5px;
+      padding: 0.5rem 1rem;
+      background-color: var(--blue);
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .tab-buttons button.active {
+      background-color: var(--purple);
+    }
+    .tab-content {
+      display: none;
+      margin-top: 1rem;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    #map {
+      height: 500px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px #ccc;
+      margin-top: 1rem;
+    }
+    iframe {
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🗺️ Club Routes</h1>
+    <p>Choose your ride: mapped, embedded, and ready for wheels</p>
+  </header>
+
+  <nav>
+    <a href="index.html">🏞 Route</a> |
+    <a href="journal.html">✍️ Journal</a> |
+    <a href="checklist.html">📸 Checklist</a> |
+    <a href="lore.html">🌌 Fairy Lore</a> |
+    <a href="routes.html">🗺️ Routes</a>
+  </nav>
+
+  <section>
+    <div class="tab-buttons">
+      <button class="tablink active" onclick="openTab('gpx')">📍 Local GPX Route</button>
+      <button class="tablink" onclick="openTab('club')">🌐 Bray Wheelers Route Library</button>
+    </div>
+
+    <!-- GPX Viewer -->
+    <div id="gpx" class="tab-content active">
+      <h2>🔁 Bray Loop (GPX)</h2>
+      <p>Explore the route interactively below (requires the <code>bray-loop.gpx</code> file in your routes folder).</p>
+      <div id="map"></div>
+    </div>
+
+    <!-- Ride with GPS Embed -->
+    <div id="club" class="tab-content">
+      <h2>🌐 Bray Wheelers Club Routes</h2>
+      <p>Access our entire Ride with GPS route library below. You can open full-screen, download GPX files, or send to your bike computer!</p>
+      <div style="max-width: 960px; margin: auto;">
+        <iframe src="https://ridewithgps.com/clubs/14789-bray-wheelers/routes"
+                width="100%" height="600" frameborder="0">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Bray Wheelers • 💜💛💙🤍 • #SpokesAndStories</p>
+  </footer>
+
+  <!-- PWA Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+
+  <!-- Route Tabs + GPX Map -->
+  <script>
+    function openTab(tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tablink');
+      contents.forEach(c => c.classList.remove('active'));
+      buttons.forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Load GPX Map
+    const map = L.map('map').setView([53.2, -6.1], 11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    new L.GPX("routes/bray-loop.gpx", {
+      async: true,
+      marker_options: {
+        startIconUrl: null,
+        endIconUrl: null,
+        shadowUrl: null
+      }
+    }).on('loaded', function(e) {
+      map.fitBounds(e.target.getBounds());
+    }).addTo(map);
+  </script>
+</body>
+</html>
